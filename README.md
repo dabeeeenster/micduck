@@ -9,15 +9,17 @@ mic: dictation tools, Zoom, Meet, voice notes.
 
 ## How it works
 
-micduck is a small Swift program that runs in the background. Every 0.3 seconds
-it asks CoreAudio whether any process is using the default input device
-(`kAudioDevicePropertyDeviceIsRunningSomewhere`). It doesn't record or read any
-audio, so it needs no microphone permission.
+micduck is a small Swift program that runs in the background. It asks CoreAudio
+to tell it when any process starts or stops using the default input device
+(`kAudioDevicePropertyDeviceIsRunningSomewhere`), and follows the default
+device as it changes, e.g. when AirPods connect. It doesn't poll, so between
+mic changes it sleeps and costs nothing. It doesn't record or read any audio,
+so it needs no microphone permission.
 
 When the mic opens, it saves the current volume of **Spotify** and **Apple
-Music** (whichever are running) and turns them down to 50%. When the mic closes,
-it puts them back. If micduck is stopped mid-duck, it restores the volume on
-the way out.
+Music** (whichever are running) and fades them down to 50% over 0.2 seconds.
+When the mic closes, it fades them back. If micduck is stopped mid-duck, it
+restores the volume on the way out.
 
 ## Install
 

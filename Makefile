@@ -14,6 +14,7 @@ install: micduck
 		-e 's|@LABEL@|$(LABEL)|' -e 's|@HOME@|$(HOME)|' \
 		launchd.plist.in > $(PLIST)
 	launchctl bootout $(DOMAIN)/$(LABEL) 2>/dev/null || true
+	@while launchctl print $(DOMAIN)/$(LABEL) >/dev/null 2>&1; do sleep 0.2; done
 	launchctl bootstrap $(DOMAIN) $(PLIST)
 	@echo "micduck is running and will start at login. Log: ~/Library/Logs/micduck.log"
 
