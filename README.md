@@ -7,6 +7,10 @@ I wrote it for voice dictation into [Claude Code](https://code.claude.com), whic
 has no hook for "started listening", but it works with anything that opens the
 mic: dictation tools, Zoom, Meet, voice notes.
 
+Using [Hammerspoon](https://www.hammerspoon.org)?
+[MicDuck.spoon](https://github.com/dabeeeenster/MicDuck.spoon) does the same
+inside it, with no separate app to run.
+
 ## How it works
 
 micduck is a small Swift program that runs in the background. It asks CoreAudio
